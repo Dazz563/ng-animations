@@ -1,4 +1,15 @@
-<app-goal *ngFor="let goal of courseGoals" [goal]="goal" (click)="goal.isActiveGoal = !goal.isActiveGoal"
-    [ngClass]="{active: goal.isActiveGoal}">
+<app-quote (click)="isFavorite = !isFavorite"
+           [ngStyle]="{'width.px': isFavorite ? 600 : 400}"
+           [ngClass]="{ 'favorite super-favorite': isFavorite }"></app-quote>
 
-</app-goal>
+<button (click)="showBoring = !showBoring"
+        class="btn btn-primary">Show boring quotes</button>
+
+<app-quote class="favorite"></app-quote>
+
+<app-quote class="moderate"></app-quote>
+
+<div *ngIf="showBoring"
+     class="boring">
+    <app-quote></app-quote>
+</div>
