@@ -9,6 +9,8 @@ import { Course } from '../app.component';
 export class MatCardComponent implements OnInit {
 
   @Input() course: Course;
+  courseStatus: string;
+  divClicked = false;
 
   options = ['Active', 'InActive',]
 
@@ -23,5 +25,6 @@ export class MatCardComponent implements OnInit {
       'inactive': this.course.status === 'inActive',
     }
   }
+
 
 }

@@ -1,3 +1,8 @@
+<div [ngStyle]="{'background-color': divClicked ? '#ccc' : '#eee'}"
+     [ngClass]="{marked: divClicked}"
+     (click)="divClicked = !divClicked">
+</div>
+
 <mat-card>
     <mat-card-header>
         <mat-card-title>{{ course.title }}</mat-card-title>
