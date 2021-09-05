@@ -1,0 +1,32 @@
+:host {
+    display: block;
+    width: 400px;
+    margin: auto;
+}
+
+mat-card {
+    margin-top: 1rem;
+
+}
+
+mat-card-content {
+    text-align: center;
+}
+
+mat-card-actions {
+    text-align: center;
+}
+
+mat-form-field {
+    width: 100%;
+    padding-top: 1rem;
+}
+
+.active {
+    color: #329b32;
+}
+
+.inactive {
+    color: #f85050;
+}
+

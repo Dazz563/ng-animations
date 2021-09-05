@@ -1,4 +1,4 @@
-<app-quote (click)="isFavorite = !isFavorite"
+<!-- <app-quote (click)="isFavorite = !isFavorite"
            [ngStyle]="{'width.px': isFavorite ? 600 : 400}"
            [ngClass]="{ 'favorite super-favorite': isFavorite }"></app-quote>
 
@@ -12,4 +12,9 @@
 <div *ngIf="showBoring"
      class="boring">
     <app-quote></app-quote>
+</div> -->
+
+<div class="container">
+        <app-mat-card *ngFor="let course of courses; let i =index"
+                      [course]="course"></app-mat-card>
 </div>
