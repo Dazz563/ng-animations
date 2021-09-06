@@ -9,3 +9,10 @@ export const markedTrigger = trigger('markedState', [
     })),
     transition('default <=> marked', animate('400ms ease-out')),
 ]);
+
+export let fade = trigger('fade', [
+    state('void', style({ opacity: 0 })),
+    transition(':enter, :leave', [
+        animate(3000)
+    ])
+]);

@@ -19,6 +19,7 @@
 
         <!-- TEST TO CHECK IF WORKING AND IS WORKING! -->
         <mat-card (click)="markedTest = !markedTest"
+                  @fade
                   style="margin: auto"
                   [@markedState]="markedTest === true ? 'marked' : 'default'"
                   style="width: 200px; height: 200px;">
@@ -27,6 +28,7 @@
 
         <!-- ORIGINAL WAY I WANTED IT NOT WORKING -->
         <app-mat-card *ngFor="let course of courses; let i = index"
+                      @fade
                       (click)="markedPrjIndex = i"
                       [@markedState]="markedPrjIndex === i ? 'marked' : 'default'"
                       (deletedCourse)="deleteCourse($event)"

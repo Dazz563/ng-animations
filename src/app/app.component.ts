@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { markedTrigger } from './animations';
+import { fade, markedTrigger } from './animations';
 
 export class Course {
   title: string;
@@ -12,7 +12,8 @@ export class Course {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    markedTrigger
+    markedTrigger,
+    fade
   ]
 })
 export class AppComponent {
