@@ -1,6 +1,6 @@
-<!-- <mat-card [@markedState]="markedTest === true ? 'marked' : 'default'"
-          (click)="markedTest = !markedTest"> -->
-<mat-card>
+<mat-card [@markedState]="markedTest === true ? 'marked' : 'default'"
+          (click)="markedTest = !markedTest">
+    <!-- <mat-card> -->
     <mat-card-header>
         <mat-card-title>{{ course.title }}</mat-card-title>
         <mat-card-subtitle [ngClass]="getPrjStatusClass()">{{ course.status }}</mat-card-subtitle>

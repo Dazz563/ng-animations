@@ -6,9 +6,9 @@ import { Course } from '../app.component';
   selector: 'app-mat-card',
   templateUrl: './mat-card.component.html',
   styleUrls: ['./mat-card.component.scss'],
-  // animations: [
-  //   markedTrigger
-  // ]
+  animations: [
+    markedTrigger
+  ]
 })
 export class MatCardComponent implements OnInit {
 
