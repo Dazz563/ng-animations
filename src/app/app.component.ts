@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { markedTrigger } from './animations';
 
 export class Course {
   title: string;
@@ -9,11 +10,16 @@ export class Course {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    markedTrigger
+  ]
 })
 export class AppComponent {
-  // isFavorite = false;
-  // showBoring = false;
+
+  markedPrjIndex = 0;
+  markedTest = false;
+
   courses: Course[] = [
     {
       title: 'Learn Angular Styles',
@@ -26,17 +32,17 @@ export class AppComponent {
       description: 'Learn how Angular helps with animating elements on your page.'
     },
     {
-      title: 'Learn Angular Styles',
+      title: 'Learn Angular Router',
       status: 'inActive',
       description: 'Practice hard to understand how you may style components and update style dynamically.'
     },
     {
-      title: 'Learn Angular Styles',
+      title: 'Learn Angular Observables',
       status: 'inActive',
       description: 'Practice hard to understand how you may style components and update style dynamically.'
     },
     {
-      title: 'Learn Angular Animations',
+      title: 'Learn Angular Security',
       status: 'Active',
       description: 'Learn how Angular helps with animating elements on your page.'
     },
@@ -46,4 +52,8 @@ export class AppComponent {
       description: 'Practice hard to understand how you may style components and update style dynamically.'
     },
   ];
+
+  deleteCourse(passedCourse: Course) {
+    this.courses = this.courses.filter((course) => course !== passedCourse);
+  }
 }

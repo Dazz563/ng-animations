@@ -1,16 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { markedTrigger } from '../animations';
 import { Course } from '../app.component';
 
 @Component({
   selector: 'app-mat-card',
   templateUrl: './mat-card.component.html',
-  styleUrls: ['./mat-card.component.scss']
+  styleUrls: ['./mat-card.component.scss'],
+  // animations: [
+  //   markedTrigger
+  // ]
 })
 export class MatCardComponent implements OnInit {
 
   @Input() course: Course;
+  @Output() deletedCourse = new EventEmitter<Course>();
   courseStatus: string;
-  divClicked = false;
+  markedTest = false;
+
 
   options = ['Active', 'InActive',]
 
@@ -24,6 +30,10 @@ export class MatCardComponent implements OnInit {
       'active': this.course.status === 'Active',
       'inactive': this.course.status === 'inActive',
     }
+  }
+
+  deleteCourse(course: Course) {
+    this.deletedCourse.emit(course);
   }
 
 

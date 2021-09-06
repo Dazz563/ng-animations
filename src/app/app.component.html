@@ -14,7 +14,26 @@
     <app-quote></app-quote>
 </div> -->
 
+
 <div class="container">
-        <app-mat-card *ngFor="let course of courses; let i =index"
+
+        <!-- TEST TO CHECK IF WORKING AND IS WORKING! -->
+        <mat-card (click)="markedTest = !markedTest"
+                  style="margin: auto"
+                  [@markedState]="markedTest === true ? 'marked' : 'default'"
+                  style="width: 200px; height: 200px;">
+        </mat-card>
+
+
+        <!-- ORIGINAL WAY I WANTED IT NOT WORKING -->
+        <app-mat-card *ngFor="let course of courses; let i = index"
+                      (click)="markedPrjIndex = i"
+                      [@markedState]="markedPrjIndex === i ? 'marked' : 'default'"
+                      (deletedCourse)="deleteCourse($event)"
                       [course]="course"></app-mat-card>
+
+        <!-- <app-mat-card *ngFor="let course of courses; let i = index"
+                      (click)="markedPrjIndex = i"
+                      (deletedCourse)="deleteCourse($event)"
+                      [course]="course"></app-mat-card> -->
 </div>
