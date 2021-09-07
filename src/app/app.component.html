@@ -32,19 +32,19 @@
 
 
         <!-- TEST TO CHECK IF WORKING AND IS WORKING! -->
-        <div fxLayout="row"
+        <!-- <div fxLayout="row"
              fxLayoutAlign="center">
                 <mat-card *ngFor="let card of cards; let i = index"
                           fxLayout="column"
                           fxLayoutAlign="center center"
                           (click)="markedCards = i"
-                          (click)="deleteCards(i)"
                           @itemState
                           [@markedState]="markedCards === i ? 'marked' : 'default'"
                           style="width: 200px; height: 200px;margin: 10px;">
-                        <button mat-raised-button>Delete</button>
+                        <button (click)="deleteCards(i)"
+                                mat-raised-button>Delete</button>
                 </mat-card>
-        </div>
+        </div> -->
 
         <div fxLayout="column"
              fxLayoutAlign="center center">
@@ -98,12 +98,12 @@
 
         <!-- ORIGINAL WAY I WANTED IT NOT WORKING -->
 
-        <div style="border: 1px solid red;">
-                <app-mat-card *ngFor="let course of courses; let i = index"
+        <div fxLayout="column"
+             fxLayoutAlign="start center">
+                <app-mat-card *ngFor="let course of displayedCourses; let i = index"
                               @itemState
-                              style="border: 1px solid red;"
+                              (@itemState.done)="onItemAnimated($event, i)"
                               (click)="markedPrjIndex = i"
-                              [@markedState]="markedPrjIndex === i ? 'marked' : 'default'"
                               (deletedCourse)="deleteCourse(i)"
                               [course]="course"></app-mat-card>
         </div>

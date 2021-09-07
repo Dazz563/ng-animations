@@ -1,4 +1,4 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 
 // MARKED TRIGGER
 export const markedTrigger = trigger('markedState', [
@@ -47,10 +47,37 @@ export const itemStateTrigger = trigger('itemState', [
         }))
     ]),
     transition(':leave', [
-        animate('1500ms ease-in', style({
+        animate('1000ms ease-in', style({
             opacity: 0,
             transform: 'translateX(100%)'
         }))
     ])
 ]);
+
+
+// THIS IS A BUMPER VERSION OF ABOVE
+// export const itemStateTrigger = trigger('itemState', [
+//     transition(':enter', [
+//         animate('3000ms ease-out', keyframes([
+//             style({
+//                 opacity: 0,
+//                 transform: 'translateX(-100%)'
+//             }),
+//             style({
+//                 opacity: 1,
+//                 transform: 'translateX(5%)'
+//             }),
+//             style({
+//                 opacity: 1,
+//                 transform: 'translateX(0)'
+//             })
+//         ]))
+//     ]),
+//     transition(':leave', [
+//         animate('1000ms ease-in', style({
+//             opacity: 0,
+//             transform: 'translateX(100%)'
+//         }))
+//     ])
+// ]);
 

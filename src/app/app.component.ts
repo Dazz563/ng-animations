@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { animateStateTrigger, fade, itemStateTrigger, markedTrigger } from './animations';
+import { AnimationEvent } from '@angular/animations';
 
 export class Course {
   title: string;
@@ -39,7 +40,7 @@ export class AppComponent implements OnInit {
     {
       title: 'Learn Angular Styles',
       status: 'inActive',
-      description: 'Practice hard to understand how you may style components and update style dynamically.'
+      description: 'Learn how Angular helps with animating elements on your page.'
     },
     {
       title: 'Learn Angular Animations',
@@ -49,12 +50,12 @@ export class AppComponent implements OnInit {
     {
       title: 'Learn Angular Router',
       status: 'inActive',
-      description: 'Practice hard to understand how you may style components and update style dynamically.'
+      description: 'Learn how Angular helps with animating elements on your page.'
     },
     {
       title: 'Learn Angular Observables',
       status: 'inActive',
-      description: 'Practice hard to understand how you may style components and update style dynamically.'
+      description: 'Learn how Angular helps with animating elements on your page.'
     },
     {
       title: 'Learn Angular Security',
@@ -64,11 +65,16 @@ export class AppComponent implements OnInit {
     {
       title: 'Learn Angular Styles',
       status: 'inActive',
-      description: 'Practice hard to understand how you may style components and update style dynamically.'
+      description: 'Learn how Angular helps with animating elements on your page.'
     },
   ];
+  displayedCourses: Course[] = [];
 
   ngOnInit(): void {
+    if (this.courses.length >= 1) {
+      this.displayedCourses.push(this.courses[0])
+    }
+
     this.newCourseForm = new FormGroup({
       title: new FormControl(''),
       status: new FormControl(''),
@@ -78,6 +84,18 @@ export class AppComponent implements OnInit {
 
   addCourse() {
     this.courses.unshift(this.newCourseForm.value as Course)
+  }
+
+  onItemAnimated(animationEvent: AnimationEvent, lastCourseId: number) {
+    if (animationEvent.fromState != 'void') {
+      return;
+    }
+    if (this.courses.length > lastCourseId + 1) {
+      this.displayedCourses.push(this.courses[lastCourseId + 1])
+    }
+    else {
+      this.courses = this.displayedCourses;
+    }
   }
 
   deleteCourse(index: number) {
