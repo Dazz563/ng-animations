@@ -17,22 +17,96 @@
 
 <div class="container">
 
+        <!-- <button mat-raised-button
+                (click)="width = width - 50"
+                color="accent">
+                Shrink
+        </button>
+        <button mat-raised-button
+                (click)="animate = true"
+                color="warn">
+                Animate me
+        </button>
+        <p [@animateState]="animate ? 'animated' : 'noAnimation'"
+           [ngStyle]="{'width.px': width}">Shrink me</p> -->
+
+
         <!-- TEST TO CHECK IF WORKING AND IS WORKING! -->
-        <mat-card (click)="markedTest = !markedTest"
-                  @fade
-                  style="margin: auto"
-                  [@markedState]="markedTest === true ? 'marked' : 'default'"
-                  style="width: 200px; height: 200px;">
-        </mat-card>
+        <div fxLayout="row"
+             fxLayoutAlign="center">
+                <mat-card *ngFor="let card of cards; let i = index"
+                          fxLayout="column"
+                          fxLayoutAlign="center center"
+                          (click)="markedCards = i"
+                          (click)="deleteCards(i)"
+                          @itemState
+                          [@markedState]="markedCards === i ? 'marked' : 'default'"
+                          style="width: 200px; height: 200px;margin: 10px;">
+                        <button mat-raised-button>Delete</button>
+                </mat-card>
+        </div>
+
+        <div fxLayout="column"
+             fxLayoutAlign="center center">
+                <button (click)="createNew = true"
+                        *ngIf="!createNew"
+                        mat-raised-button>Create new Project
+                </button>
+                <button (click)="createNew = false"
+                        *ngIf="createNew"
+                        color="warn"
+                        mat-raised-button>Cancel
+                </button>
+        </div>
+
+        <div *ngIf="createNew"
+             fxLayout="column"
+             fxLayoutAlign="center center">
+
+                <div>
+
+                </div>
+
+                <form [formGroup]="newCourseForm"
+                      (ngSubmit)="addCourse()">
+                        <mat-form-field appearance="outline">
+                                <mat-label>Title</mat-label>
+                                <input type="text"
+                                       matInput
+                                       formControlName="title">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                                <mat-label>Status</mat-label>
+                                <mat-select formControlName="status">
+                                        <mat-option value="Active">Active</mat-option>
+                                        <mat-option value="InActive">InActive</mat-option>
+                                </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                                <mat-label>Description</mat-label>
+                                <input type="text"
+                                       matInput
+                                       formControlName="description">
+                        </mat-form-field>
+
+                        <div style="text-align: center;">
+                                <button mat-raised-button>Submit</button>
+                        </div>
+                </form>
+        </div>
 
 
         <!-- ORIGINAL WAY I WANTED IT NOT WORKING -->
-        <app-mat-card *ngFor="let course of courses; let i = index"
-                      @fade
-                      (click)="markedPrjIndex = i"
-                      [@markedState]="markedPrjIndex === i ? 'marked' : 'default'"
-                      (deletedCourse)="deleteCourse($event)"
-                      [course]="course"></app-mat-card>
+
+        <div style="border: 1px solid red;">
+                <app-mat-card *ngFor="let course of courses; let i = index"
+                              @itemState
+                              style="border: 1px solid red;"
+                              (click)="markedPrjIndex = i"
+                              [@markedState]="markedPrjIndex === i ? 'marked' : 'default'"
+                              (deletedCourse)="deleteCourse(i)"
+                              [course]="course"></app-mat-card>
+        </div>
 
         <!-- <app-mat-card *ngFor="let course of courses; let i = index"
                       @fade

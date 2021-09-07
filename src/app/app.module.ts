@@ -9,6 +9,8 @@ import { AuthorComponent } from './author/author.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { MatCardComponent } from './mat-card/mat-card.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { MatCardComponent } from './mat-card/mat-card.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

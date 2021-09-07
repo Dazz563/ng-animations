@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { fade, markedTrigger } from './animations';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { animateStateTrigger, fade, itemStateTrigger, markedTrigger } from './animations';
 
 export class Course {
   title: string;
@@ -13,13 +14,26 @@ export class Course {
   styleUrls: ['./app.component.scss'],
   animations: [
     markedTrigger,
-    fade
+    fade,
+    animateStateTrigger,
+    itemStateTrigger,
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
 
   markedPrjIndex = 0;
-  markedTest = false;
+  markedCards = 0;
+
+  isShown = false;
+  width = 400
+
+  animate = false;
+
+  cards = [1, 2, 3, 4];
+
+  createNew = false;
+  newCourseForm: FormGroup;
 
   courses: Course[] = [
     {
@@ -54,7 +68,23 @@ export class AppComponent {
     },
   ];
 
-  deleteCourse(passedCourse: Course) {
-    this.courses = this.courses.filter((course) => course !== passedCourse);
+  ngOnInit(): void {
+    this.newCourseForm = new FormGroup({
+      title: new FormControl(''),
+      status: new FormControl(''),
+      description: new FormControl(''),
+    })
+  }
+
+  addCourse() {
+    this.courses.unshift(this.newCourseForm.value as Course)
+  }
+
+  deleteCourse(index: number) {
+    this.courses.splice(index, 1);
+  }
+
+  deleteCards(index: number) {
+    this.cards.splice(index, 1);
   }
 }
