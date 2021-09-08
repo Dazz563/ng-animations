@@ -5,7 +5,10 @@ import { Course } from '../shared/course-db.service';
 @Component({
   selector: 'app-new-mat-card',
   templateUrl: './new-mat-card.component.html',
-  styleUrls: ['./new-mat-card.component.scss']
+  styleUrls: ['./new-mat-card.component.scss'],
+  animations: [
+
+  ]
 })
 export class NewMatCardComponent implements OnInit {
 

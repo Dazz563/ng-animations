@@ -40,7 +40,7 @@ export const slideStateTrigger = trigger('slideState', [
         style({
             transform: 'translateY(-100%)'
         }),
-        animate('500ms ease-out', style({
+        animate('300ms ease-out', style({
             transform: 'translateY(0)'
         }))
     ]),
@@ -48,10 +48,10 @@ export const slideStateTrigger = trigger('slideState', [
         style({
             transform: 'translateY(0)'
         }),
-        animate('500ms ease-out', style({
+        animate('300ms ease-out', style({
             transform: 'translateY(-100%)'
         }))
-    ]),
+    ])
 ]);
 
 // ANIMATE ITEMS SLIDING INTO POSITION & FADES THEM
@@ -71,7 +71,24 @@ export const itemStateTrigger = trigger('itemState', [
             opacity: 0,
             transform: 'translateX(100%)'
         }))
-    ])
+    ]),
+    transition('slidUp => slidDown', [
+        style({
+            transform: 'translateY(-100%)'
+        }),
+        animate('500ms ease-out', style({
+            transform: 'translateY(0)'
+        }))
+    ]),
+    // transition('slidDown => slidUp', [
+    //     style({
+    //         transform: 'translateY(0)'
+    //     }),
+    //     animate('1500ms ease-out', style({
+    //         transform: 'translateY(-100%)'
+    //     }))
+    // ]),
+
 ]);
 
 
