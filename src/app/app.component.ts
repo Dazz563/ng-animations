@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { animateStateTrigger, fade, itemStateTrigger, markedTrigger } from './animations';
+import { animateStateTrigger, fade, itemStateTrigger, markedTrigger, slideStateTrigger } from './animations';
 import { AnimationEvent } from '@angular/animations';
 
 export class Course {
@@ -18,6 +17,7 @@ export class Course {
     fade,
     animateStateTrigger,
     itemStateTrigger,
+    slideStateTrigger,
   ]
 })
 export class AppComponent implements OnInit {
@@ -34,7 +34,6 @@ export class AppComponent implements OnInit {
   cards = [1, 2, 3, 4];
 
   createNew = false;
-  newCourseForm: FormGroup;
 
   courses: Course[] = [
     {
@@ -74,16 +73,10 @@ export class AppComponent implements OnInit {
     if (this.courses.length >= 1) {
       this.displayedCourses.push(this.courses[0])
     }
-
-    this.newCourseForm = new FormGroup({
-      title: new FormControl(''),
-      status: new FormControl(''),
-      description: new FormControl(''),
-    })
   }
 
-  addCourse() {
-    this.courses.unshift(this.newCourseForm.value as Course)
+  addCourse(course: Course) {
+    this.courses.unshift(course);
   }
 
   onItemAnimated(animationEvent: AnimationEvent, lastCourseId: number) {

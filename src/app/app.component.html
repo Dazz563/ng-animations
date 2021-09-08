@@ -49,11 +49,13 @@
         <div fxLayout="column"
              fxLayoutAlign="center center">
                 <button (click)="createNew = true"
+                        type="button"
                         *ngIf="!createNew"
                         mat-raised-button>Create new Project
                 </button>
                 <button (click)="createNew = false"
                         *ngIf="createNew"
+                        type="button"
                         color="warn"
                         mat-raised-button>Cancel
                 </button>
@@ -63,36 +65,10 @@
              fxLayout="column"
              fxLayoutAlign="center center">
 
-                <div>
+                <app-new-mat-card @slideState
+                                  (courseCreated)="addCourse($event)"></app-new-mat-card>
 
-                </div>
 
-                <form [formGroup]="newCourseForm"
-                      (ngSubmit)="addCourse()">
-                        <mat-form-field appearance="outline">
-                                <mat-label>Title</mat-label>
-                                <input type="text"
-                                       matInput
-                                       formControlName="title">
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                                <mat-label>Status</mat-label>
-                                <mat-select formControlName="status">
-                                        <mat-option value="Active">Active</mat-option>
-                                        <mat-option value="InActive">InActive</mat-option>
-                                </mat-select>
-                        </mat-form-field>
-                        <mat-form-field appearance="outline">
-                                <mat-label>Description</mat-label>
-                                <input type="text"
-                                       matInput
-                                       formControlName="description">
-                        </mat-form-field>
-
-                        <div style="text-align: center;">
-                                <button mat-raised-button>Submit</button>
-                        </div>
-                </form>
         </div>
 
 

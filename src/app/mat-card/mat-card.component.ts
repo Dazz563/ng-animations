@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { itemStateTrigger, markedTrigger } from '../animations';
+import { itemStateTrigger, markedTrigger, slideStateTrigger } from '../animations';
 import { Course } from '../app.component';
 
 @Component({
@@ -8,7 +8,7 @@ import { Course } from '../app.component';
   styleUrls: ['./mat-card.component.scss'],
   animations: [
     markedTrigger,
-    itemStateTrigger
+    itemStateTrigger,
   ]
 })
 export class MatCardComponent implements OnInit {

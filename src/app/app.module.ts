@@ -11,13 +11,15 @@ import { MaterialModule } from './material/material.module';
 import { MatCardComponent } from './mat-card/mat-card.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NewMatCardComponent } from './new-mat-card/new-mat-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuoteComponent,
     AuthorComponent,
-    MatCardComponent
+    MatCardComponent,
+    NewMatCardComponent
   ],
   imports: [
     CommonModule,

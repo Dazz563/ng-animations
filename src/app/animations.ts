@@ -1,4 +1,4 @@
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
+import { animate, animation, keyframes, state, style, transition, trigger } from '@angular/animations';
 
 // MARKED TRIGGER
 export const markedTrigger = trigger('markedState', [
@@ -32,6 +32,17 @@ export const animateStateTrigger = trigger('animateState', [
             width: '*'
         }))
     ])
+]);
+
+export const slideStateTrigger = trigger('slideState', [
+    transition(':enter', [
+        style({
+            transform: 'translateY(-100%)'
+        }),
+        animate('1000ms ease-out', style({
+            transform: 'translateY(0)'
+        }))
+    ]),
 ]);
 
 // ANIMATE ITEMS SLIDING INTO POSITION & FADES THEM
@@ -80,4 +91,6 @@ export const itemStateTrigger = trigger('itemState', [
 //         }))
 //     ])
 // ]);
+
+
 
