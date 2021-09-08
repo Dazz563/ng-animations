@@ -66,6 +66,8 @@
              fxLayoutAlign="center center">
 
                 <app-new-mat-card @slideState
+                                  *ngIf="createNew"
+                                  (creationCancelled)="createNew = false"
                                   (courseCreated)="addCourse($event)"></app-new-mat-card>
 
 

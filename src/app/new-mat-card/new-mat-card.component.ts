@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Course } from '../app.component';
+import { Course } from '../shared/course-db.service';
 
 @Component({
   selector: 'app-new-mat-card',
@@ -12,6 +12,7 @@ export class NewMatCardComponent implements OnInit {
   constructor() { }
 
   newCourseForm: FormGroup;
+  @Output() creationCancelled = new EventEmitter<void>();
   @Output() courseCreated = new EventEmitter<Course>();
 
   ngOnInit(): void {
@@ -24,6 +25,12 @@ export class NewMatCardComponent implements OnInit {
 
   addCourse() {
     this.courseCreated.emit(this.newCourseForm.value as Course);
+    this.newCourseForm.reset();
+  }
+
+  onCancel() {
+    this.newCourseForm.reset();
+    this.creationCancelled.emit();
   }
 
 }

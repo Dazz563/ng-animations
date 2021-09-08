@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { itemStateTrigger, markedTrigger, slideStateTrigger } from '../animations';
-import { Course } from '../app.component';
+import { Course } from '../shared/course-db.service';
+
 
 @Component({
   selector: 'app-mat-card',

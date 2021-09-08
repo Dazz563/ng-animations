@@ -34,13 +34,22 @@ export const animateStateTrigger = trigger('animateState', [
     ])
 ]);
 
+// ANIMATE SLIDE DOWNS
 export const slideStateTrigger = trigger('slideState', [
     transition(':enter', [
         style({
             transform: 'translateY(-100%)'
         }),
-        animate('1000ms ease-out', style({
+        animate('500ms ease-out', style({
             transform: 'translateY(0)'
+        }))
+    ]),
+    transition(':leave', [
+        style({
+            transform: 'translateY(0)'
+        }),
+        animate('500ms ease-out', style({
+            transform: 'translateY(-100%)'
         }))
     ]),
 ]);

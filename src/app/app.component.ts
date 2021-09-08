@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { animateStateTrigger, fade, itemStateTrigger, markedTrigger, slideStateTrigger } from './animations';
 import { AnimationEvent } from '@angular/animations';
+import { Course, CourseDbService } from './shared/course-db.service';
 
-export class Course {
-  title: string;
-  status: string;
-  description: string;
-}
+
 
 @Component({
   selector: 'app-root',
@@ -22,57 +19,32 @@ export class Course {
 })
 export class AppComponent implements OnInit {
 
-
   markedPrjIndex = 0;
   markedCards = 0;
-
   isShown = false;
-  width = 400
-
+  width = 400;
   animate = false;
-
   cards = [1, 2, 3, 4];
-
   createNew = false;
 
-  courses: Course[] = [
-    {
-      title: 'Learn Angular Styles',
-      status: 'inActive',
-      description: 'Learn how Angular helps with animating elements on your page.'
-    },
-    {
-      title: 'Learn Angular Animations',
-      status: 'Active',
-      description: 'Learn how Angular helps with animating elements on your page.'
-    },
-    {
-      title: 'Learn Angular Router',
-      status: 'inActive',
-      description: 'Learn how Angular helps with animating elements on your page.'
-    },
-    {
-      title: 'Learn Angular Observables',
-      status: 'inActive',
-      description: 'Learn how Angular helps with animating elements on your page.'
-    },
-    {
-      title: 'Learn Angular Security',
-      status: 'Active',
-      description: 'Learn how Angular helps with animating elements on your page.'
-    },
-    {
-      title: 'Learn Angular Styles',
-      status: 'inActive',
-      description: 'Learn how Angular helps with animating elements on your page.'
-    },
-  ];
+  courses: Course[];
   displayedCourses: Course[] = [];
 
+  constructor(
+    private courseService: CourseDbService,
+  ) {
+
+  }
+
   ngOnInit(): void {
-    if (this.courses.length >= 1) {
-      this.displayedCourses.push(this.courses[0])
-    }
+    this.courseService.loadCourses()
+      .subscribe((courses: Course[]) => {
+        this.courses = courses;
+        if (this.courses.length >= 1) {
+          this.displayedCourses.push(this.courses[0]);
+        }
+      })
+
   }
 
   addCourse(course: Course) {
