@@ -1,9 +1,12 @@
 <mat-toolbar color="primary">
-        <span routerLink=""
-              routerLinkActive="active">Courses</span>
-        <span routerLink="users"
-              routerLinkActive="active">Users</span>
+      <span routerLink=""
+            routerLinkActive="active">Courses</span>
+      <span routerLink="users"
+            routerLinkActive="active">Users</span>
 </mat-toolbar>
-<main>
-        <router-outlet></router-outlet>
+<!-- <main>
+      <router-outlet></router-outlet>
+</main> -->
+<main [@routeState]="getAnimationData(routerOutlet)">
+      <router-outlet #routerOutlet="outlet"></router-outlet>
 </main>

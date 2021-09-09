@@ -17,7 +17,7 @@
 
 <div class="container">
 
-    <!-- <button mat-raised-button
+        <!-- <button mat-raised-button
             (click)="width = width - 50"
             color="accent">
             Shrink
@@ -31,8 +31,8 @@
        [ngStyle]="{'width.px': width}">Shrink me</p> -->
 
 
-    <!-- TEST TO CHECK IF WORKING AND IS WORKING! -->
-    <!-- <div fxLayout="row"
+        <!-- TEST TO CHECK IF WORKING AND IS WORKING! -->
+        <!-- <div fxLayout="row"
          fxLayoutAlign="center">
             <mat-card *ngFor="let card of cards; let i = index"
                       fxLayout="column"
@@ -46,47 +46,48 @@
             </mat-card>
     </div> -->
 
-    <div fxLayout="column"
-         fxLayoutAlign="center center">
-        <button (click)="createNew = true"
-                type="button"
-                *ngIf="!createNew"
-                mat-raised-button>Create new Project
-        </button>
-        <button (click)="createNew = false"
-                *ngIf="createNew"
-                type="button"
-                color="warn"
-                mat-raised-button>Cancel
-        </button>
-    </div>
+        <div fxLayout="column"
+             fxLayoutAlign="center center">
+                <button (click)="createNew = true"
+                        type="button"
+                        *ngIf="!createNew"
+                        mat-raised-button>Create new Project
+                </button>
+                <button (click)="createNew = false"
+                        *ngIf="createNew"
+                        type="button"
+                        color="warn"
+                        mat-raised-button>Cancel
+                </button>
+        </div>
 
-    <div *ngIf="createNew"
-         fxLayout="column"
-         fxLayoutAlign="center center">
+        <div *ngIf="createNew"
+             fxLayout="column"
+             fxLayoutAlign="center center">
 
-        <app-new-mat-card *ngIf="createNew"
-                          (creationCancelled)="createNew = false"
-                          @slideState
-                          (courseCreated)="addCourse($event)"></app-new-mat-card>
-
-
-    </div>
+                <app-new-mat-card *ngIf="createNew"
+                                  (creationCancelled)="createNew = false"
+                                  @slideState
+                                  (courseCreated)="addCourse($event)"></app-new-mat-card>
 
 
-    <!-- ORIGINAL WAY I WANTED IT NOT WORKING -->
+        </div>
 
-    <div fxLayout="column"
-         fxLayoutAlign="start center">
-        <app-mat-card *ngFor="let course of displayedCourses; let i = index"
-                      [@itemState]="createNew ? 'slidDown' : 'slidUp'"
-                      (@itemState.done)="onItemAnimated($event, i)"
-                      (click)="markedPrjIndex = i"
-                      (deletedCourse)="deleteCourse(i)"
-                      [course]="course"></app-mat-card>
-    </div>
 
-    <!-- <app-mat-card *ngFor="let course of courses; let i = index"
+        <!-- ORIGINAL WAY I WANTED IT NOT WORKING -->
+
+        <div [@listState]="courses?.length"
+             fxLayout="column"
+             fxLayoutAlign="start center">
+                <app-mat-card *ngFor="let course of courses; let i = index"
+                              @listState
+                              [@itemState]="createNew ? 'slidDown' : 'slidUp'"
+                              (click)="markedPrjIndex = i"
+                              (deletedCourse)="deleteCourse(i)"
+                              [course]="course"></app-mat-card>
+        </div>
+
+        <!-- <app-mat-card *ngFor="let course of courses; let i = index"
                   @fade
                   (click)="markedPrjIndex = i"
                   (deletedCourse)="deleteCourse($event)"

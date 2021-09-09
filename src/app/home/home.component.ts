@@ -1,8 +1,8 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { AnimationEvent } from '@angular/animations';
-import { markedTrigger, fade, animateStateTrigger, itemStateTrigger, slideStateTrigger } from '../animations';
+import { markedTrigger, fade, animateStateTrigger, itemStateTrigger, slideStateTrigger, listStateTrigger } from '../animations';
 import { Course, CourseDbService } from '../shared/course-db.service';
-import { routeFadeStateTrigger } from '../shared/route-animations';
+import { routeFadeStateTrigger, routeSlideStateTrigger } from '../shared/route-animations';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +14,13 @@ import { routeFadeStateTrigger } from '../shared/route-animations';
     animateStateTrigger,
     itemStateTrigger,
     slideStateTrigger,
-    routeFadeStateTrigger,
+    routeFadeStateTrigger({ startOpacity: 0, duration: '3000ms' }),
+    listStateTrigger,
   ]
 })
 export class HomeComponent implements OnInit {
 
-  @HostBinding('@routeFadeState') routeAnimation = true;
+  // @HostBinding('@routeFadeState') routeAnimation = true;
 
   markedPrjIndex = 0;
   markedCards = 0;
@@ -30,7 +31,6 @@ export class HomeComponent implements OnInit {
   createNew = false;
 
   courses: Course[];
-  displayedCourses: Course[] = [];
 
   constructor(
     private courseService: CourseDbService,
@@ -42,27 +42,11 @@ export class HomeComponent implements OnInit {
     this.courseService.loadCourses()
       .subscribe((courses: Course[]) => {
         this.courses = courses;
-        if (this.courses.length >= 1) {
-          this.displayedCourses.push(this.courses[0]);
-        }
-      })
-
+      });
   }
 
   addCourse(course: Course) {
     this.courses.unshift(course);
-  }
-
-  onItemAnimated(animationEvent: AnimationEvent, lastCourseId: number) {
-    if (animationEvent.fromState != 'void') {
-      return;
-    }
-    if (this.courses.length > lastCourseId + 1) {
-      this.displayedCourses.push(this.courses[lastCourseId + 1])
-    }
-    else {
-      this.courses = this.displayedCourses;
-    }
   }
 
   deleteCourse(index: number) {
