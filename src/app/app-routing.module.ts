@@ -7,10 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    data: { animation: { page: 'rootPage' } }
   },
   {
     path: 'users',
     component: UsersComponent,
+    data: { animation: { page: 'usersPage' } }
   }
 ];
 

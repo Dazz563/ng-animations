@@ -1,4 +1,4 @@
-import { animate, animation, keyframes, state, style, transition, trigger } from '@angular/animations';
+import { animate, animation, keyframes, query, stagger, state, style, transition, trigger } from '@angular/animations';
 
 // MARKED TRIGGER
 export const markedTrigger = trigger('markedState', [
@@ -117,6 +117,28 @@ export const itemStateTrigger = trigger('itemState', [
 //         }))
 //     ])
 // ]);
+
+
+// NEW STAGGER METHOD 
+export const listStateTrigger = trigger('listState', [
+    transition('* => *', [
+        query(':enter', [
+            style({
+                opacity: 0,
+                transform: 'translateX(-100%)',
+            }),
+            stagger(500, [
+                animate('1000ms ease-out', keyframes([
+                    style({
+                        opacity: 1,
+                        transform: 'translateX(0)',
+                        offset: 1,
+                    }),
+                ]))
+            ]),
+        ], { optional: true }),
+    ]),
+]);
 
 
 
