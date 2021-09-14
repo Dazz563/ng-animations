@@ -39,10 +39,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.courseService.loadCourses()
-      .subscribe((courses: Course[]) => {
-        this.courses = courses;
-      });
+    this.courseService.loadCourses$.subscribe((courses: Course[]) => {
+      this.courses = courses;
+    });
+    // this.courseService.loadCourses()
+    //   .subscribe((courses: Course[]) => {
+    //     this.courses = courses;
+    //   });
   }
 
   addCourse(course: Course) {

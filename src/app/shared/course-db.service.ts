@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, of } from 'rxjs';
+import { delay, timeout } from 'rxjs/operators';
 
 export class Course {
   title: string;
@@ -47,12 +48,17 @@ export class CourseDbService {
 
   constructor() { }
 
-  loadCourses(): Observable<Course[]> {
-    const courseLoader = Observable.create((observer: Observer<Course[]>) => {
-      setTimeout(() => {
-        observer.next(this.courses);
-      }, 1000);
-    });
-    return courseLoader;
-  }
+  loadCourses$ = of(this.courses).pipe(delay(5000));
+
+  // loadCourses(): Observable<Course[]> {
+  //   const courseLoader = new Observable((observer: Observer<Course[]>) => {
+
+  //     setTimeout(() => {
+  //       observer.next(this.courses);
+  //     }, 1000);
+
+  //   });
+
+  //   return courseLoader;
+  // }
 }
