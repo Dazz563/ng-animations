@@ -48,7 +48,7 @@ export class CourseDbService {
 
   constructor() { }
 
-  loadCourses$ = of(this.courses).pipe(delay(5000));
+  loadCourses$ = of(this.courses).pipe(delay(2000));
 
   // loadCourses(): Observable<Course[]> {
   //   const courseLoader = new Observable((observer: Observer<Course[]>) => {

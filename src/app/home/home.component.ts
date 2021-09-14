@@ -3,6 +3,7 @@ import { AnimationEvent } from '@angular/animations';
 import { markedTrigger, fade, animateStateTrigger, itemStateTrigger, slideStateTrigger, listStateTrigger } from '../animations';
 import { Course, CourseDbService } from '../shared/course-db.service';
 import { routeFadeStateTrigger, routeSlideStateTrigger } from '../shared/route-animations';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
